@@ -1,3 +1,10 @@
+docs/_build
+test_results/*
+
+.idea
+.coverage
+
+# Boilerplate
 *.py[cod]
 
 # C extensions
