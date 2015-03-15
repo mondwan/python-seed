@@ -128,7 +128,7 @@ You should take care below 2 files before distributing your application.
 * setup.py
 
 Make sure you have written all your python modules into the attribute
-```package```
+`packages`
 
 * requirement.txt
 
