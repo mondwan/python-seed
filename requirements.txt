@@ -1,1 +1,23 @@
-# Required packages
+# Run setup.py for us
+-e .
+
+# Add your dependency below
+Babel==1.3
+Jinja2==2.7.3
+MarkupSafe==0.23
+Pygments==2.0.2
+Sphinx==1.3
+Werkzeug==0.10.1
+alabaster==0.7.2
+coverage==3.7.1
+docutils==0.12
+itsdangerous==0.24
+nose==1.3.4
+nose-exclude==0.2.0
+nose-testconfig==0.9
+nosexcover==1.0.10
+pytz==2014.10
+six==1.9.0
+snowballstemmer==1.2.0
+sphinx-rtd-theme==0.1.7
+Fabric==1.10.1

@@ -7,12 +7,37 @@ You can use this piecemeal or clone it to start new projects
 
 ---
 
+Getting start
+-------------
+
+* Clone my repository
+
+        git clone https://github.com/mondwan/python-seed.git
+        cd python-seed
+
+* Setup virtualenv (Optional)
+
+        mkdir env
+        virtualenv env/
+        source env/bin/activate
+
+* Install dependencies
+
+        pip install -r requirements.txt
+
+* Update setup.cfg with information like author, name of project etc
+
+* Code your application
+
+    * Remember to rename directory ***YOUR_PROJECT_NAME***
+
 Running Tests
 -------------
 
 You can run tests via the [nose library](https://pypi.python.org/pypi/nose).
 
-Tests will be autodiscovered if they are in the `tests` folder, in files that start with `test_`.
+Tests will be autodiscovered if they are in the `tests` folder, in files that
+start with `test_`.
 
 To run the tests,
 
@@ -29,79 +54,82 @@ For more human-readable output, run
 
     nosetests -c .noserc_local
 
-Then navigate to `test_results/coverage/index.html` and open it in your browser. This is the HTML interface for the
-coverage report, and is very useful when writing tests to make sure your code is being executed.
+Then navigate to `test_results/coverage/index.html` and open it in your
+browser. This is the HTML interface for the coverage report, and is very useful
+when writing tests to make sure your code is being executed.
 
-`.coveragerc` contains the settings for the [coverage](https://pypi.python.org/pypi/coverage) library, and can be adjusted to filter analysis.
+`.coveragerc` contains the settings for the [coverage][coverage] library, and
+can be adjusted to filter analysis.
 
-coverage will give errors when `nosetests` is run on an empty project - basically saying that there is no data.
+coverage will give errors when `nosetests` is run on an empty project which is
+basically saying that there is no data.
 
-Linting your Project
---------------------
+[coverage]: https://pypi.python.org/pypi/coverage
 
-Linting your project can improve your code quality and readability, as well as prevent some types of bugs and design anti-patterns.
+Documentation
+-------------
 
-Run [pylint](https://pypi.python.org/pypi/pylint) on your project with
-
-	pylint -f parseable *.py tests --rcfile=.pylintrc | tee test_results/pylint.out
-	
-You can then check `test_results/pylint.out` for any violations.
-
-Specific options for pylint are configured in `.pylintrc`.
-
-You can also run [flake8](https://pypi.python.org/pypi/flake8) against your project with
-
-	flake8 myapp
-	
-where myapp is any directory or Python module.
-
-flake8 does 3 things: 
-
-* Runs [pep8](https://pypi.python.org/pypi/pep8). pep8 is similar to pylint, some people prefer it.
-* Runs [PyFlakes](https://pypi.python.org/pypi/pyflakes). This does some static analysis and detects potential errors.
-* Optionally runs a McCabe complexity checker to report functions with complexity above a specified limit.
-
-To enable the McCabe check, add this arg to your flake8 run
-
-	--max-complexity 10
-	
-where 10 is the number you set.
-
-Documenting your project
-------------------------
-
-Documentation is created via the [Sphinx](https://pypi.python.org/pypi/Sphinx) package. The docs live in the `docs` folder and use [RestructuredText](http://docutils.sourceforge.net/rst.html).
+Documentation is created via the [Sphinx][Sphinx] package. The docs live in
+the `docs` folder and use [RestructuredText][RestructuredText].
 
 All doc files should use the `.rst` extension.
 
-To generate html docs from your ReST source files
+[Sphinx]: https://pypi.python.org/pypi/Sphinx
+[RestructuredText]: http://docutils.sourceforge.net/rst.html
 
-	cd docs
-	make html
+Getting start
+=============
+
+* Initialize documentation directory
+
+        # Get in documentation directory
+	    cd docs
+	    # Generate 2 files
+	    fab initialize
+
+	    # After running initialize, you should get 2 files `docs/src/index.rst` and
+	    # `docs/build/conf.py`
+
+* Write your own .rst files and placed under folder `docs/src`
+
+* Generate html
+
+        fab make
 	
-Then open `docs/_build/html/index.html` in your browser to view them.
+* open `docs/build/html/index.html` in your browser to view them.
 
-`docs/conf.py` holds a number of settings for Sphinx, including theme, copyright and plugins.
+Notes
+=====
 
 Three plugins are already enabled:
 
-* sphinx.ext.autodoc - By documenting your Python source code in ReST format, Sphinx can extract your docstrings into the docs.
-* sphinx.ext.coverage - Gives you stats on how much of your code is documented.
-* sphinx.ext.viewcode - Allows you to view your source code directly from the docs.
+* `sphinx.ext.autodoc` - By documenting your Python source code in ReST format,
+  Sphinx can extract your docstrings into the docs.
 
-**ReST resources**
+* `sphinx.ext.coverage` - Gives you stats on how much of your code is documented.
+
+* `sphinx.ext.viewcode` - Allows you to view your source code directly from the docs.
+
+ReST resources
+==============
 
 * [Primer](http://docutils.sourceforge.net/docs/user/rst/quickstart.html)
 * [User Reference](http://docutils.sourceforge.net/docs/user/rst/quickref.html)
 * [Cheat Sheet](http://docutils.sourceforge.net/docs/user/rst/cheatsheet.txt)
 
-3rd Party Packages
-------------------
+Distribution
+------------
 
-All packages that your project needs to run are listed in `requirements.txt`.
+You should take care below 2 files before distributing your application.
 
-Any packages that are used only for development or build are listed in `requirements_dev.txt`.
+    # setup.py
+    # requirement.txt
 
-You can install packages from both with
+* setup.py
 
-	pip install -r requirements.txt; pip install -r requirements_dev.txt
+Make sure you have written all your python modules into the attribute
+```package```
+
+* requirement.txt
+
+Make sure you have written all dependencies you need there
