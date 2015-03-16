@@ -21,15 +21,16 @@ Getting start
         virtualenv env/
         source env/bin/activate
 
+* Update setup.cfg with information like author, name of project etc
+
+    * Remember to rename directory ***YOUR_PROJECT_NAME*** to the name of your
+      project
+
 * Install dependencies
 
         pip install -r requirements.txt
 
-* Update setup.cfg with information like author, name of project etc
-
 * Code your application
-
-    * Remember to rename directory ***YOUR_PROJECT_NAME***
 
 Running Tests
 -------------
