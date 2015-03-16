@@ -102,10 +102,13 @@ def initialize():
     local(cmd)
 
     # Moving index from BUILD_DIR to RST_SRC_DIR if it does not exist at first
-    local('mv -n %s/index.rst %s' % (BUILD_DIR, RST_SRC_DIR))
+    local('mv -n %s %s' % (
+        os.path.join(BUILD_DIR, 'index.rst'),
+        RST_SRC_DIR
+    ))
 
     # Remove index.rst in build dir if it still exists
-    local('rm -f %s/index.rst' % BUILD_DIR)
+    local('rm -f %s' % os.path.join(BUILD_DIR, 'index.rst'))
 
 
 @fix_directory
@@ -151,10 +154,15 @@ def clean():
     """
     Clean generated files
     """
+    # Get metadata
+    metadata = get_metadata()
+
     # Remove generated files
     cmd = 'rm -fr %s' % BUILD_DIR
     local(cmd)
 
     # Remove those generated api .rst
-    cmd = 'rm -f %s/modules.rst' % RST_SRC_DIR
+    cmd = 'rm -f %s' % os.path.join(RST_SRC_DIR, 'modules.rst')
+    local(cmd)
+    cmd = 'rm -f %s' % os.path.join(RST_SRC_DIR, '%s.rst' % metadata['name'])
     local(cmd)
