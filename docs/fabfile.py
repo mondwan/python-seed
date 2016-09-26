@@ -132,7 +132,7 @@ def make(builder='html'):
     # Render apidoc
     # Assume the module, which named as metadata['name'], had been placed under
     # PROJECT_DIR
-    cmd = 'sphinx-apidoc -o %s %s' % (
+    cmd = 'sphinx-apidoc -M -e -o %s %s' % (
         RST_SRC_DIR,
         os.path.join(PROJECT_DIR, metadata['name']),
     )
@@ -164,5 +164,5 @@ def clean():
     # Remove those generated api .rst
     cmd = 'rm -f %s' % os.path.join(RST_SRC_DIR, 'modules.rst')
     local(cmd)
-    cmd = 'rm -f %s' % os.path.join(RST_SRC_DIR, '%s.rst' % metadata['name'])
+    cmd = 'rm -f %s' % os.path.join(RST_SRC_DIR, '%s*.rst' % metadata['name'])
     local(cmd)
