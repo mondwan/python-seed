@@ -1,5 +1,7 @@
 docs/_build
 test_results/*
+docs/src/modules.rst
+env/
 
 .idea
 .coverage
