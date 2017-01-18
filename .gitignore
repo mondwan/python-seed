@@ -1,7 +1,6 @@
 docs/_build
 test_results/*
-docs/src/modules.rst
-env/
+test_tmp/*
 
 .idea
 .coverage
@@ -46,3 +45,9 @@ nosetests.xml
 # Ignore vim files
 *.swp
 *.swo
+
+# Ignore generated rst
+docs/src/modules.rst
+
+# Ignore env folder
+env/
