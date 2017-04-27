@@ -12,7 +12,7 @@
 
 from distutils.core import setup
 from ConfigParser import ConfigParser
-import os
+from setuptools import find_packages
 
 SETUP_CFG_PATH = 'setup.cfg'
 
@@ -20,18 +20,6 @@ SETUP_CFG_PATH = 'setup.cfg'
 parser = ConfigParser()
 parser.read(SETUP_CFG_PATH)
 metadata = dict(parser.items('metadata'))
-
-
-def getPackages(name):
-    # Get paths of __init__.py
-    paths = [
-        os.path.join(dirpath, f)
-        for dirpath, dirnames, files in os.walk(name)
-        for f in files if f == '__init__.py'
-    ]
-    # Module name = dirname of p and replace / with .
-    return [os.path.dirname(p).replace('/', '.') for p in paths]
-
 
 setup(
     name=metadata['name'],
@@ -41,7 +29,7 @@ setup(
     author=metadata['author'],
     author_email=metadata['author_email'],
     license=metadata['license'],
-    packages=getPackages(
-        metadata['name']
-    ),
+    packages=[
+        m for m in find_packages() if 'tests' not in m
+    ],
 )

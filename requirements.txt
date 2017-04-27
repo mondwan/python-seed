@@ -1,5 +1,5 @@
 # Run setup.py for us
--e .
+.
 
 alabaster==0.7.10
 Babel==2.4.0
