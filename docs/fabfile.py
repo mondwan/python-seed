@@ -166,3 +166,5 @@ def clean():
     local(cmd)
     cmd = 'rm -f %s' % os.path.join(RST_SRC_DIR, '%s*.rst' % metadata['name'])
     local(cmd)
+
+__all__ = ['clean', 'make', 'initialize']
