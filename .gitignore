@@ -51,3 +51,6 @@ docs/src/modules.rst
 
 # Ignore env folder
 env/
+
+# Ignore generated coverage reports
+cover/
